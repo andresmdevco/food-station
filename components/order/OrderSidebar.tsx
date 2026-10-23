@@ -1,9 +1,14 @@
+import { PrismaClient } from '@/src/generated/prisma/client';
+import { categories } from '../../prisma/data/categories';
+import { prisma } from '@/src/lib/prisma';
 
-export default function OrderSidebar() {
-  return (
-    <aside className="md:w-72 md:h-screen bg-white">
-      OrderSidebar
-    </aside>
-  )
+async function getCategories() {
+  return await prisma.category.findMany();
 }
 
+export default async function OrderSidebar() {
+  const categories = await getCategories();
+  console.log(categories);
+
+  return <aside className="md:w-72 md:h-screen bg-white">OrderSidebar</aside>;
+}
