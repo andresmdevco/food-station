@@ -4,20 +4,7 @@ import OrderCard from '@/components/order/OrderCard';
 import { revalidatePath } from 'next/cache';
 
 async function getPendingOrders() {
-  const orders = await prisma.order.findMany({
-    where: {
-      status: false,
-    },
-    include: {
-      orderProducts: {
-        include: {
-          product: true,
-        },
-      },
-    },
-  });
-
-  return orders;
+  
 }
 
 export default async function OrdersPage() {
