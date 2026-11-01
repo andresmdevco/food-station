@@ -1,6 +1,6 @@
 # 🍔 FoodStation
  
-Aplicación web tipo quiosco de comida construida con **Next.js**, **TypeScript** y **Tailwind CSS**. Tiene tres áreas: un menú donde el cliente arma su pedido, una pantalla de pedidos listos y un panel de administración para gestionar pedidos y productos. Los datos se guardan en **PostgreSQL** mediante **Prisma**, las operaciones de escritura se realizan con **Server Actions** y los datos se validan con **Zod**.
+Aplicación web tipo quiosco de comida construida con **Next.js**, **TypeScript** y **Tailwind CSS**. Tiene tres áreas: un menú donde el cliente arma su pedido, una pantalla de pedidos listos y un panel de administración para gestionar pedidos y productos. Los datos se guardan en **PostgreSQL** mediante **Prisma**, las operaciones de escritura se realizan con **Server Actions** y los datos se validan con **Zod**. La aplicación está desplegada en **Vercel**, con la base de datos PostgreSQL alojada en **Neon**.
  
 ## 🌐 Demo
  
@@ -151,22 +151,28 @@ Aplicación web tipo quiosco de comida construida con **Next.js**, **TypeScript*
 ```bash
    npm install
 ```
-3. Crear un archivo `.env` en la raíz del proyecto con la URL de tu base de datos PostgreSQL y el nombre de tu cuenta de Cloudinary:
+3. Crear un archivo `.env` en la raíz del proyecto con la URL de tu base de datos PostgreSQL y las credenciales de tu cuenta de Cloudinary:
 ```bash
    DATABASE_URL=tu_url_de_postgresql
    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=tu_cloud_name
+   NEXT_PUBLIC_CLOUDINARY_API_KEY=tu_api_key
+   CLOUDINARY_API_SECRET=tu_api_secret
 ```
-4. Ejecutar las migraciones para crear las tablas:
+4. Generar el cliente de Prisma:
+```bash
+   npx prisma generate
+```
+5. Ejecutar las migraciones para crear las tablas:
 ```bash
    npx prisma migrate dev
 ```
-5. Cargar las categorías y los productos iniciales:
+6. Cargar las categorías y los productos iniciales:
 ```bash
    npx prisma db seed
 ```
-6. Ejecutar el proyecto en modo desarrollo:
+7. Ejecutar el proyecto en modo desarrollo:
 ```bash
    npm run dev
 ```
-7. Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
+8. Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
 > La subida de imágenes usa el `uploadPreset` definido en `components/products/ImageUpload.tsx`. Para usar tu propia cuenta de Cloudinary, reemplázalo por un preset de tipo *unsigned* creado en tu cuenta.
